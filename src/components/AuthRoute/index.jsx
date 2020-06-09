@@ -8,7 +8,7 @@ const AuthRoute = ({ component: Component, ...rest } : AuthRoute) => {
 
 	return (
 		<>
-			<Route {...rest} render={props => (logStatus) ? ( <Component {...props} />) : ( <p>Welcome on My Social Network. This website is a training to Redux and React. We use auth and routing to create a small social media website.</p>)} />
+			<Route {...rest} render={props => (logStatus) ? ( <Component {...props} />) : ( <p>This is a private page, go log in please.</p>)} />
 		</>
 	);
 }

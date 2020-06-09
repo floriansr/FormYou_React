@@ -14,7 +14,7 @@ const Profile = () => {
 
   useEffect(() => {
 
-    fetch('https://api-minireseausocial.mathis-dyk.fr/users/me', {
+    fetch('https://form-you-back.herokuapp.com/users/me.json', {
       method: 'get',
       headers: {
         'Authorization': `Bearer ${token}`, 
@@ -26,8 +26,7 @@ const Profile = () => {
         dispatch(setProfile(response))
       })
       .catch(error => console.log(error)); 
-
-}, [dispatch, token]);
+  }, [dispatch, token]);
 
   const myProfile = useSelector(state => state.user.data);
 

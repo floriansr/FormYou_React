@@ -32,7 +32,7 @@ const Register = () => {
 
     const getProfile = (token) => {
 
-    fetch('http://localhost:8080/users/sign_in.json', {
+    fetch('https://form-you-back.herokuapp.com/users/sign_in.json', {
       method: 'post',
       headers: {
         'Authorization': `${token}`, 
@@ -61,7 +61,7 @@ const Register = () => {
       }
 		}
 
-	 fetch('http://localhost:8080/users.json', {
+	 fetch('https://form-you-back.herokuapp.com/users.json', {
 	          method: 'post',
 	          headers: {
 	            'Content-Type': 'application/json'

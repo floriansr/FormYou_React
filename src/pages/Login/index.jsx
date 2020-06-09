@@ -38,7 +38,7 @@ const LogIn = () => {
       password
     }
 
-    fetch('https://api-minireseausocial.mathis-dyk.fr/auth/local', {
+    fetch('https://form-you-back.herokuapp.com/users/sign_in.json', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'

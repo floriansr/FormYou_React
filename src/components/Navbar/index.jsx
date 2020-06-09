@@ -14,7 +14,7 @@ const Navbar = () => {
 
 	const deconnexion = () => {
 
-		    fetch('http://localhost:8080/users/sign_out.json', {
+		    fetch('https://form-you-back.herokuapp.com/users/sign_out.json', {
 		      method: 'delete',
 		      headers: {
 		        'Authorization': token, 
