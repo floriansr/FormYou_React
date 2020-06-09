@@ -2,9 +2,10 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux"
 
-import { Form, Input, Button, message } from 'antd';
+import { Form, Input, Button, message, Select } from 'antd';
 import { setProfile, setConnexion } from "../../redux";
 
+const { Option } = Select;
 
 
 
@@ -41,6 +42,7 @@ const Register = () => {
     })
       .then(response => response.json())
       .then(response => {
+        console.log(response)
         dispatch(setConnexion())
       	history.push("/");
       })
@@ -49,7 +51,7 @@ const Register = () => {
 
 
 
-	const Inscription = ({ username, first_name, last_name, email, password}) => {
+	const Inscription = ({ username, first_name, last_name, email, password, status}) => {
 
 		const data = { 
       "user": {
@@ -97,6 +99,19 @@ const Register = () => {
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
+
+  const [form] = Form.useForm();
+
+  const onGenderChange = value => {
+    switch (value) {
+      case "professor":
+        return form.setFieldsValue({ note: "Hi, professor!" });
+      case "admin":
+        return form.setFieldsValue({ note: "Hi admin!" });
+      default:
+        return form.setFieldsValue({ note: "Hi, student!" });
+    }
+  }
 
 
 	return (
@@ -163,6 +178,18 @@ const Register = () => {
         ]}
       >
         <Input.Password />
+      </Form.Item>
+
+      <Form.Item name="status" label="Status" rules={[{ required: true }]}>
+        <Select
+          placeholder="Select a option and change input text above"
+          onChange={onGenderChange}
+          allowClear
+        >
+          <Option value="student">student</Option>
+          <Option value="instructor">instructor</Option>
+          <Option value="admin">admin</Option>
+        </Select>
       </Form.Item>
 
 

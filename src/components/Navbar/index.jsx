@@ -10,6 +10,7 @@ const Navbar = () => {
 	const dispatch=useDispatch()
 	const history=useHistory()
 	const token = useSelector(state => state.user.data.jwt);
+	const logStatus = useSelector(state => state.log.log);
 
 
 	const deconnexion = () => {
@@ -38,12 +39,21 @@ const Navbar = () => {
 	return (
 		<>
 			<div>
-				<button type="button" onClick={deconnexion}>Deconnexion</button>
 
 				<Link to="/">Home</Link>
 				<Link to="/about">About</Link>
-				<Link to="/profile">Profile</Link>
-				<Link to="/register">Register</Link>
+
+				{logStatus ? 
+					<div>
+						<button type="button" onClick={deconnexion}>Deconnexion</button>
+						<Link to="/profile">Profile</Link>
+					</div>
+					:
+					<div>
+						<Link to="/register">Register</Link>
+						<Link to="/login">Login</Link>
+					</div>
+					}
 			</div>
 		</>
 	);

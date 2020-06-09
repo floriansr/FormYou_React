@@ -2,9 +2,13 @@ import React from "react";
 
 const Home = () => {
 
+	const renderedView = () => {
+	}
+
+
 	return (
 		<>
-			<p>Home page</p>
+			{renderedView}
 		</>
 	);
 };
