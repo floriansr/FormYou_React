@@ -1,11 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux"
 
 import { Form, Input, Button, message } from 'antd';
 import Cookies from 'js-cookie'
 
-import { setConnexion } from "../../redux";
+import { setConnexion, setProfile } from "../../redux";
 
 
 
@@ -28,17 +28,19 @@ import { setConnexion } from "../../redux";
 const LogIn = () => {
 	const history = useHistory();
   const dispatch = useDispatch();
+  const { statusSlug } = useParams();
 
 
+  const Connexion = ({email, password}) => {
 
-  const Connexion = ({identifier, password}) => {
+    const data = {}
 
-    const data = {
-      identifier,
-      password
-    }
+      data[statusSlug] = {
+          email,
+          password
+      }
 
-    fetch('https://form-you-back.herokuapp.com/users/sign_in.json', {
+    fetch(`https://form-you-back.herokuapp.com/${statusSlug}s/sign_in.json`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
@@ -46,17 +48,22 @@ const LogIn = () => {
        body: JSON.stringify(data)
     })
 
-    .then(response => response.json())
-    .then(response => {
-            const token = response.jwt
+    .then(response => response.json()
+          .then(user => ({
+            jwt: response.headers.get('Authorization'),
+            user
+          }))
+      )
+    .then(result => {
 
-            if (response.statusCode === 400) {
+            if (result.error) {
               message.error("Check your logs", 3);
             }
             else {
               message.success("Profile well login", 3);
-              Cookies.set('token', token, { expires: 7 })
+              Cookies.set('token',{"jwt":result.jwt, "status":statusSlug}, { expires: 7 })
               dispatch(setConnexion())
+              dispatch(setProfile(result))
               history.push("/")
             }
           })
@@ -77,7 +84,10 @@ const LogIn = () => {
 
 	return (
 		<>
-	<Form
+
+    <h3>{statusSlug} space</h3>
+
+	  <Form
       {...layout}
       name="basic"
       initialValues={{
@@ -87,12 +97,12 @@ const LogIn = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Identifier"
-        name="identifier"
+        label="Email"
+        name="email"
         rules={[
           {
             required: true,
-            message: 'Please input your username or email!',
+            message: 'Please input your email!',
           },
         ]}
       >

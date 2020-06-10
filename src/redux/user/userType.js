@@ -1,2 +1,4 @@
-export const PROFILE = "PROFILE";
+export const SET_PROFILE = "SET_PROFILE";
+export const REMOVE_PROFILE = "REMOVE_PROFILE";
+
 // export const MODIFICATE_MY_PROFILE = "MODIFICATE_MY_PROFILE";
