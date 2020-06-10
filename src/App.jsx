@@ -30,7 +30,7 @@ const App = () => {
 								<Route path="/about" component={About} />
 								
 								<Authroute path="/profile" component={Profile} />
-								<Authroute path="/" component={Home} />
+								<Home path="/" component={Home} />
 							</Switch>
 			            </Provider>
 					</div>
