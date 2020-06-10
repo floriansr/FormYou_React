@@ -26,7 +26,7 @@ const App = () => {
 
 							<Switch>
 								<Route path="/register" component={Register} />
-                				<Route path="/login" component={LogIn} />
+                				<Route path="/login/:statusSlug" component={LogIn} />
 								<Route path="/about" component={About} />
 								
 								<Authroute path="/profile" component={Profile} />
