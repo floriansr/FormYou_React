@@ -3,7 +3,7 @@ import thunkMiddleware from "redux-thunk";
 
 import logReducer from "redux/log/logReducer";
 import userReducer from "redux/user/userReducer";
-// import postsReducer from "redux/posts/postsReducer";
+import courseReducer from "redux/courses/courseReducer";
 // import otherUserReducer from "redux/other_user/otherUserReducer";
 
 
@@ -11,7 +11,7 @@ import userReducer from "redux/user/userReducer";
 const rootReducer = combineReducers({
   log: logReducer,
   user: userReducer,
-  // posts: postsReducer,
+  courses: courseReducer,
   // other_user_data: otherUserReducer
 })
 
