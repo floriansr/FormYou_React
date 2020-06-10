@@ -85,7 +85,7 @@ const LogIn = () => {
 	return (
 		<>
 
-    <h3> Espace {statusSlug}</h3>
+    <h3>{statusSlug} space</h3>
 
 	  <Form
       {...layout}

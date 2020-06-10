@@ -19,30 +19,30 @@ const Navbar = () => {
 
 	const deconnexion = () => {
 
-			const token = JSON.parse(Cookies.get('token')).jwt
-			const userStatus = JSON.parse(Cookies.get('token')).status
+		const token = JSON.parse(Cookies.get('token')).jwt
+		const userStatus = JSON.parse(Cookies.get('token')).status
 
-		    fetch(`https://form-you-back.herokuapp.com/${userStatus}s/sign_out.json`, {
-		      method: 'delete',
-		      headers: {
-		        'Authorization': token, 
-		        'Content-Type': 'application/json'
+		fetch(`https://form-you-back.herokuapp.com/${userStatus}s/sign_out.json`, {
+		    method: 'delete',
+		    headers: {
+		      'Authorization': token, 
+		      'Content-Type': 'application/json'
 		      },
-		    })
-		      .then(response =>{ 
-
-		      	if (response.statusText === "No Content") {
+		    })		    
+		    .then(response =>{ 
+		        if (response.statusText === "No Content") {
 		      		dispatch(removeConnexion())
 		      		dispatch(removeProfile())
 		      		Cookies.remove('token')
 		      		history.push("/")
 		     	}
-		      else
-		      	response.json()})
-		      .then(response => {
-		      	return response
-		      })
-		      .catch(error => console.log(error));
+		        else
+		      	response.json()
+		    })
+		    .then(response => {
+		      	console.log(response)
+		    })
+		    .catch(error => console.error(error));
 	};
 
 	const menu = (
