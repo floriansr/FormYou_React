@@ -1,33 +1,32 @@
 body {
-    margin: 0px;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
+  margin: 0px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 #header {
-    text-align: center;
-    margin-bottom: 5%;
+  text-align: center;
+  margin-bottom: 5%;
 }
 
 .container {
-    padding: 0 25px 0 25px;
-    flex-direction: row;
-    flex-wrap: wrap;
+  padding: 0 25px 0 25px;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .cadre {
-    width: 15%;
-    margin: auto;
-    margin-bottom: 2%;
-    padding: 10px 0px;
-    border: 5px solid black;
-    text-align: center;
-    transition: 1.2s;
+  width: 15%;
+  margin: auto;
+  margin-bottom: 2%;
+  padding: 10px 0px;
+  border: 5px solid black;
+  text-align: center;
+  transition: 1.2s;
 }
 
 .cadre:hover {
-    border: 5px solid #b59760;
-    transition: 0.7s;
+  border: 5px solid #b59760;
+  transition: 0.7s;
 }
 
 .ant-carousel .slick-slide img {
@@ -42,15 +41,19 @@ body {
   margin-bottom: 2rem;
 }
 
-a { 
-    color: grey;
-    text-decoration:none;
+a {
+  color: grey;
+  text-decoration: none;
 }
 
-.ant-menu{
-color: grey;
+.ant-menu {
+  color: grey;
 }
 
 .active {
   color: #1890ff;
+}
+
+.course-show-container {
+  padding: 1% 3% 3% 3%;
 }
