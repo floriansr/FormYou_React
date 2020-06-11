@@ -1,1 +1,2 @@
 export const SET_COURSES = "SET_COURSES";
+export const FILTER_COURSES = "FILTER_COURSES";

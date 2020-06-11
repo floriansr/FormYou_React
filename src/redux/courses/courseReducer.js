@@ -1,4 +1,4 @@
-import { SET_COURSES } from "redux/courses/courseType";
+import { SET_COURSES, FILTER_COURSES } from "redux/courses/courseType";
 
 const initialState = {
   data: [],
@@ -10,6 +10,11 @@ const courseReducer = (state = initialState, action) => {
       return {
         ...state,
         data: action.details
+      };
+    case FILTER_COURSES:
+      return {
+        ...state,
+        filter: state.data.filter((course) => course.id === action.courseId)
       };
     default:
       return state;
