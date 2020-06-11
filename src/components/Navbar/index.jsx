@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import Cookies from 'js-cookie'
 
@@ -47,49 +47,53 @@ const Navbar = () => {
 		    .catch(error => console.error(error));
 	};
 
+	const handleClick = (e) => {
+  console.log('click', e);
+}
+
 	return (
 		<>
 			<div>
 
-				<Menu mode="horizontal">
-			        <Menu.Item icon={<AppstoreOutlined />}>
-			          <Link to="/">Home</Link>
+				<Menu key="menu1" mode="horizontal" onClick={handleClick}>
+			        <Menu.Item key="4" icon={<AppstoreOutlined />}>
+			          <NavLink exact to="/" activeClassName="active">Home</NavLink>
 			        </Menu.Item>
-			        <Menu.Item disabled icon={<AppstoreOutlined />}>
+			        <Menu.Item key="5" disabled icon={<AppstoreOutlined />}>
 			          About
 			        </Menu.Item>
-			        <Menu.Item disabled icon={<MailOutlined />}>
+			        <Menu.Item key="6" disabled icon={<MailOutlined />}>
 			          Contact
 			        </Menu.Item>
 
 
 					{logStatus ? 
 
-							<Menu.Item disabled icon={<SettingOutlined />}>
+							<Menu.Item key="7" disabled icon={<SettingOutlined />}>
 				         		 Profile
 				       		</Menu.Item>
 						:
 
-					        <Menu.Item icon={<UserOutlined />}>
-					          <Link to="/register">Register</Link>
+					        <Menu.Item key="8" icon={<UserOutlined />}>
+					          <NavLink to="/register" activeClassName="active">Register</NavLink>
 					        </Menu.Item>
 						}
 
 					{logStatus ? 
 
-							<Menu.Item disabled icon={<SettingOutlined />}>
+							<Menu.Item key="9" disabled icon={<SettingOutlined />}>
 				         		 <Button type="button" onClick={deconnexion}>Deconnexion</Button>
 				       		</Menu.Item>
 						:
 
-					        <SubMenu icon={<UserOutlined />} title="Login">
-					            <Menu.Item icon={<AppstoreOutlined />}><Link to="/login/students">Student Space</Link></Menu.Item>
-					            <Menu.Item icon={<AppstoreOutlined />}><Link to="/login/instructors">Instructor Space</Link></Menu.Item>
-					            <Menu.Item icon={<AppstoreOutlined />}><Link to="/login/administrators">Admin Space</Link></Menu.Item>
+					        <SubMenu icon={<UserOutlined />} title="Login" key="sub1" onClick={handleClick}>
+					            <Menu.Item key="1" icon={<AppstoreOutlined />}><Link to="/login/students">Student Space</Link></Menu.Item>
+					            <Menu.Item key="2" icon={<AppstoreOutlined />}><Link to="/login/instructors">Instructor Space</Link></Menu.Item>
+					            <Menu.Item key="3" icon={<AppstoreOutlined />}><Link to="/login/administrators">Admin Space</Link></Menu.Item>
 					        </SubMenu>
 					}	
 
-			        <Menu.Item>
+			        <Menu.Item key="10">
 			          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
 			            AntDesign (get quick antdesign access ;) )
 			          </a>
