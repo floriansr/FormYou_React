@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Navbar from "components/Navbar";
-import Authroute from "components/AuthRoute"
+import Authroute from "components/AuthRoute";
 
 import Register from "pages/Register";
 import LogIn from "pages/Login";
 import Home from "pages/Home";
 import About from "pages/About";
 import Profile from "pages/Profile";
+import Course from "pages/Course";
 import NotFound from "pages/NotFound";
 
 import Cookies from 'js-cookie'
@@ -49,25 +50,27 @@ const App = () => {
 
 		}, [dispatch]);
 
-	return (
-		<>
-				<Router>
-					<div>
-							<Navbar />
+		return (
+		    <>
+		      <Router>
+		        <div>
+		          <Provider store={store}>
+		            <Navbar />
 
-							<Switch>
-								<Route exact path="/register" component={Register} />
-                				<Route exact path="/login/:statusSlug" component={LogIn} />
-								<Route exact path="/about" component={About} />
-								
-								<Authroute exact path="/profile" component={Profile} />
-								<Home exact path="/" component={Home} />
-								<Route path="*" component={NotFound} status={404} />
-							</Switch>
-					</div>
-				</Router>
-		</>
-	);
-};
+		            <Switch>
+		              <Route exact path="/register" component={Register} />
+		              <Route exact path="/login/:statusSlug" component={LogIn} />
+		              <Route exact path="/about" component={About} />
+
+		              <Authroute exact path="/profile" component={Profile} />
+		              <Authroute exact path="/course/:courseId" component={Course} />
+		              <Home exact path="/" component={Home} />
+		              <Route path="*" component={NotFound} status={404} />
+		            </Switch>
+		          </Provider>
+		        </div>
+		      </Router>
+		    </>
+		  );
 
 export default App;
