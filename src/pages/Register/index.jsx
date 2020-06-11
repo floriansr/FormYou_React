@@ -35,7 +35,7 @@ const Register = () => {
 
     const getProfile = (token, status) => {
 
-    fetch(`https://form-you-back.herokuapp.com/${status}/sign_in.json`, {
+    fetch(`https://form-you-back.herokuapp.com/${status}s/sign_in.json`, {
       method: 'post',
       headers: {
         'Authorization': `${token}`, 
@@ -55,17 +55,19 @@ const Register = () => {
 
 	const Inscription = ({ firstname, lastname, email, password, status}) => {
 
-    const Status = status.slice(0, -1)
     const data = {}
 
-      data[Status] = {
+      data[status] = {
           first_name : firstname,
           last_name : lastname,
           email,
           password
       }
+
+    console.log(data)
+
     
-    fetch(`https://form-you-back.herokuapp.com/${status}.json`, {
+    fetch(`https://form-you-back.herokuapp.com/${status}s.json`, {
 	          method: 'post',
 	          headers: {
 	            'Content-Type': 'application/json'
@@ -73,11 +75,13 @@ const Register = () => {
 	         body: JSON.stringify(data)
 	        })
 	      .then(response => response.json()
-          .then(user => ({
+          .then(user => (
+            {
             jwt: response.headers.get('Authorization'),
             user
           })))
 	      .then(result => {
+            console.log(result.jwt)
 
               if (result.jwt) {
                 Cookies.set('token',{"jwt":result.jwt, "status":status}, { expires: 7 })
@@ -109,8 +113,10 @@ const Register = () => {
           return form.setFieldsValue({ note: "Hi, professor!" });
         case "admin":
           return form.setFieldsValue({ note: "Hi admin!" });
-        default:
+        case "student":
           return form.setFieldsValue({ note: "Hi, student!" });
+        default:
+          return null
       }
     }
 
@@ -186,9 +192,9 @@ const Register = () => {
               onChange={onStatusChange}
               allowClear
             >
-              <Option value="students">student</Option>
-              <Option value="instructors">instructor</Option>
-              <Option value="administrators">admin</Option>
+              <Option value="student">student</Option>
+              <Option value="instructor">instructor</Option>
+              <Option value="administrator">admin</Option>
             </Select>
           </Form.Item>
 
