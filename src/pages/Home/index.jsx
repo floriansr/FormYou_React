@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import Loader from "react-loader";
 
+import SearchBar from "components/SearchBar"
 import CoursesList from "components/CoursesList"
 import CarouselImages from "tools/Carousel"
 
@@ -31,6 +32,9 @@ const Home = () => {
 	return (
 		<>
 			<CarouselImages/>
+
+			<SearchBar/>
+
 			{courses.length === 0 ? <Loader/> : <CoursesList/> }
 		</>
 	);
