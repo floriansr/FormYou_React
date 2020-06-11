@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Course from "../../pages/Course";
+
+import CategoriesList from "components/CategoriesList";
 
 const CourseShow = () => {
   const { courseId } = useParams();
@@ -31,6 +32,14 @@ const CourseShow = () => {
               <b>Instructor:</b> {course.instructor.first_name}{" "}
               {course.instructor.last_name}
             </h4>
+            {course.categories.length > 0 ? (
+              <h4>
+                <b>Categories:</b>{" "}
+                <CategoriesList categories={course.categories} />
+              </h4>
+            ) : (
+              <p>This course has no categories.</p>
+            )}
           </>
         ) : null}
       </div>
