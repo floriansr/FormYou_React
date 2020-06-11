@@ -55,8 +55,8 @@ const LogIn = () => {
           }))
       )
     .then(result => {
-
-            if (result.error) {
+            console.log(result)
+            if (!result.jwt) {
               message.error("Check your logs", 3);
             }
             else {

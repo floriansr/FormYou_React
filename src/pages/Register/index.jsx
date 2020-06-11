@@ -35,7 +35,7 @@ const Register = () => {
 
     const getProfile = (token, status) => {
 
-    fetch(`https://form-you-back.herokuapp.com/${status}/sign_in.json`, {
+    fetch(`https://form-you-back.herokuapp.com/${status}s/sign_in.json`, {
       method: 'post',
       headers: {
         'Authorization': `${token}`, 
@@ -55,12 +55,9 @@ const Register = () => {
 
 	const Inscription = ({ firstname, lastname, email, password, status}) => {
 
-    const Status = status.slice(0, -1)
     const data = {}
 
-    console.log(status)
-
-      data[Status] = {
+      data[status] = {
           first_name : firstname,
           last_name : lastname,
           email,
@@ -70,7 +67,7 @@ const Register = () => {
     console.log(data)
 
     
-    fetch(`https://form-you-back.herokuapp.com/${status}.json`, {
+    fetch(`https://form-you-back.herokuapp.com/${status}s.json`, {
 	          method: 'post',
 	          headers: {
 	            'Content-Type': 'application/json'
