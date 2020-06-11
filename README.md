@@ -1,1 +1,1 @@
-https://form-you-react.now.sh
+https://form-you.now.sh
