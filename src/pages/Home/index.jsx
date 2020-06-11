@@ -2,14 +2,25 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import Loader from "react-loader";
 
+import SearchBar from "components/SearchBar"
 import CoursesList from "components/CoursesList"
 import CarouselImages from "tools/Carousel"
+import Cookies from 'js-cookie'
 
 import { setCourse } from "../../redux";
 
 
 const Home = () => {
 	const dispatch = useDispatch();
+	const logStatus = useSelector(state => state.log.log);
+
+	const checkUser = () => {
+		const user = JSON.parse(Cookies.get('token')).status
+		if (user === "student") {
+			return true
+		}
+		return null
+	}
 
 	useEffect(() => {
 
@@ -27,10 +38,12 @@ const Home = () => {
 	}, [dispatch])
 
 	const courses = useSelector(state => state.courses.data);
+	
 
 	return (
 		<>
 			<CarouselImages/>
+			{logStatus && checkUser() ? <SearchBar/> : "" }
 			{courses.length === 0 ? <Loader/> : <CoursesList/> }
 		</>
 	);

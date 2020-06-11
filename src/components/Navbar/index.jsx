@@ -24,8 +24,6 @@ const Navbar = () => {
 		const token = JSON.parse(Cookies.get('token')).jwt
 		const userStatus = JSON.parse(Cookies.get('token')).status
 
-		console.log(userStatus)
-
 		fetch(`https://form-you-back.herokuapp.com/${userStatus}s/sign_out.json`, {
 		    method: 'delete',
 		    headers: {

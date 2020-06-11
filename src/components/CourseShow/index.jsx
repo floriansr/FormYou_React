@@ -29,12 +29,12 @@ const CourseShow = () => {
           <>
             <h3>{course.title}</h3>
             <h4>
-              <b>Instructor:</b> {course.instructor.first_name}{" "}
+              <b>Instructor:</b> {course.instructor.first_name}
               {course.instructor.last_name}
             </h4>
             {course.categories.length > 0 ? (
               <h4>
-                <b>Categories:</b>{" "}
+                <b>Categories:</b>
                 <CategoriesList categories={course.categories} />
               </h4>
             ) : (

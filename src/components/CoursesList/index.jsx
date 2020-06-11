@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const CoursesList = () => {
   const courses = useSelector((state) => state.courses.data);
-  console.log(courses);
+  const filter = useSelector((state) => state.courses.filter);
 
   return (
     <>
@@ -21,7 +21,7 @@ const CoursesList = () => {
             xl: 6,
             xxl: 3,
           }}
-          dataSource={courses}
+          dataSource={filter === undefined ? courses : filter}
           renderItem={(item) => (
             <List.Item>
               <Card title={item.title}>
