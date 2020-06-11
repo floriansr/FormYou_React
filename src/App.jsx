@@ -12,6 +12,7 @@ import LogIn from "pages/Login";
 import Home from "pages/Home";
 import About from "pages/About";
 import Profile from "pages/Profile";
+import NotFound from "pages/NotFound";
 
 
 const App = () => {
@@ -25,12 +26,13 @@ const App = () => {
 							<Navbar />
 
 							<Switch>
-								<Route path="/register" component={Register} />
-                				<Route path="/login/:statusSlug" component={LogIn} />
-								<Route path="/about" component={About} />
+								<Route exact path="/register" component={Register} />
+                				<Route exact path="/login/:statusSlug" component={LogIn} />
+								<Route exact path="/about" component={About} />
 								
-								<Authroute path="/profile" component={Profile} />
-								<Home path="/" component={Home} />
+								<Authroute exact path="/profile" component={Profile} />
+								<Home exact path="/" component={Home} />
+								<Route path="*" component={NotFound} status={404} />
 							</Switch>
 			            </Provider>
 					</div>

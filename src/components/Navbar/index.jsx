@@ -1,14 +1,16 @@
 import React from "react";
 
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import Cookies from 'js-cookie'
 
-import { Menu, Dropdown, Button } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
-
+import { Menu, Button } from 'antd';
+import {  UserOutlined, MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 
 import { removeConnexion, removeProfile } from "../../redux";
+
+const { SubMenu } = Menu;
+
 
 
 const Navbar = () => {
@@ -45,43 +47,58 @@ const Navbar = () => {
 		    .catch(error => console.error(error));
 	};
 
-	const menu = (
-	  <Menu>
-	    <Menu.Item key="1" icon={<UserOutlined />}>
-	    	<Link to="/login/student">Student</Link>
-	    </Menu.Item>
-	    <Menu.Item key="2" icon={<UserOutlined />}>
-	      <Link to="/login/instructor">Instructor</Link>
-	    </Menu.Item>
-	    <Menu.Item key="3" icon={<UserOutlined />}>
-	      <Link to="/login/administrator">Administrator</Link>
-	    </Menu.Item>
-	  </Menu>
-	 )
-
+	const handleClick = (e) => {
+  console.log('click', e);
+}
 
 	return (
 		<>
 			<div>
 
-				<Link to="/">Home</Link>
-				<Link to="/about">About</Link>
+				<Menu key="menu1" mode="horizontal" onClick={handleClick}>
+			        <Menu.Item key="4" icon={<AppstoreOutlined />}>
+			          <NavLink exact to="/" activeClassName="active">Home</NavLink>
+			        </Menu.Item>
+			        <Menu.Item key="5" disabled icon={<AppstoreOutlined />}>
+			          About
+			        </Menu.Item>
+			        <Menu.Item key="6" disabled icon={<MailOutlined />}>
+			          Contact
+			        </Menu.Item>
 
-				{logStatus ? 
-					<div>
-						<button type="button" onClick={deconnexion}>Deconnexion</button>
-						<Link to="/profile">Profile</Link>
-					</div>
-					:
-					<div>
-						<Link to="/register">Register</Link>
-						    <Dropdown overlay={menu}>
-						      <Button>
-						        Login <DownOutlined />
-						      </Button>
-						    </Dropdown>
-					</div>
-					}
+
+					{logStatus ? 
+
+							<Menu.Item key="7" disabled icon={<SettingOutlined />}>
+				         		 Profile
+				       		</Menu.Item>
+						:
+
+					        <Menu.Item key="8" icon={<UserOutlined />}>
+					          <NavLink to="/register" activeClassName="active">Register</NavLink>
+					        </Menu.Item>
+						}
+
+					{logStatus ? 
+
+							<Menu.Item key="9" disabled icon={<SettingOutlined />}>
+				         		 <Button type="button" onClick={deconnexion}>Deconnexion</Button>
+				       		</Menu.Item>
+						:
+
+					        <SubMenu icon={<UserOutlined />} title="Login" key="sub1" onClick={handleClick}>
+					            <Menu.Item key="1" icon={<AppstoreOutlined />}><Link to="/login/students">Student Space</Link></Menu.Item>
+					            <Menu.Item key="2" icon={<AppstoreOutlined />}><Link to="/login/instructors">Instructor Space</Link></Menu.Item>
+					            <Menu.Item key="3" icon={<AppstoreOutlined />}><Link to="/login/administrators">Admin Space</Link></Menu.Item>
+					        </SubMenu>
+					}	
+
+			        <Menu.Item key="10">
+			          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
+			            AntDesign (get quick antdesign access ;) )
+			          </a>
+			        </Menu.Item>
+		      	</Menu>
 			</div>
 		</>
 	);
