@@ -24,6 +24,8 @@ const Navbar = () => {
 		const token = JSON.parse(Cookies.get('token')).jwt
 		const userStatus = JSON.parse(Cookies.get('token')).status
 
+		console.log(userStatus)
+
 		fetch(`https://form-you-back.herokuapp.com/${userStatus}s/sign_out.json`, {
 		    method: 'delete',
 		    headers: {
@@ -41,15 +43,12 @@ const Navbar = () => {
 		        else
 		      	response.json()
 		    })
-		    .then(response => {
-		      	console.log(response)
-		    })
 		    .catch(error => console.error(error));
 	};
 
 	const handleClick = (e) => {
-  console.log('click', e);
-}
+	  console.log('click', e);
+	}
 
 	return (
 		<>
@@ -87,9 +86,9 @@ const Navbar = () => {
 						:
 
 					        <SubMenu icon={<UserOutlined />} title="Login" key="sub1" onClick={handleClick}>
-					            <Menu.Item key="1" icon={<AppstoreOutlined />}><Link to="/login/students">Student Space</Link></Menu.Item>
-					            <Menu.Item key="2" icon={<AppstoreOutlined />}><Link to="/login/instructors">Instructor Space</Link></Menu.Item>
-					            <Menu.Item key="3" icon={<AppstoreOutlined />}><Link to="/login/administrators">Admin Space</Link></Menu.Item>
+					            <Menu.Item key="1" icon={<AppstoreOutlined />}><Link to="/login/student">Student Space</Link></Menu.Item>
+					            <Menu.Item key="2" icon={<AppstoreOutlined />}><Link to="/login/instructor">Instructor Space</Link></Menu.Item>
+					            <Menu.Item key="3" icon={<AppstoreOutlined />}><Link to="/login/administrator">Admin Space</Link></Menu.Item>
 					        </SubMenu>
 					}	
 
