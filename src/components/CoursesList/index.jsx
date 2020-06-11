@@ -1,40 +1,38 @@
 import React from "react";
 
-import { useSelector } from "react-redux"
-import { List, Card } from 'antd';
-
-
-
-
+import { useSelector } from "react-redux";
+import { List, Card } from "antd";
+import { Link } from "react-router-dom";
 
 const CoursesList = () => {
+  const courses = useSelector((state) => state.courses.data);
+  console.log(courses);
 
-	const courses = useSelector(state => state.courses.data);
-	console.log(courses)
-
-	return (
-		<>
-		<div className="container">
-			<List
-		    grid={{
-		      gutter: 16,
-		      xs: 1,
-		      sm: 2,
-		      md: 4,
-		      lg: 4,
-		      xl: 6,
-		      xxl: 3,
-		    }}
-		    dataSource={courses}
-		    renderItem={item => (
-		      <List.Item>
-		        <Card title={item.title}>Card content</Card>
-		      </List.Item>
-		    )}
-		  />
-		 </div> 
-		</>
-	);
+  return (
+    <>
+      <div className="container">
+        <List
+          grid={{
+            gutter: 16,
+            xs: 1,
+            sm: 2,
+            md: 4,
+            lg: 4,
+            xl: 6,
+            xxl: 3,
+          }}
+          dataSource={courses}
+          renderItem={(item) => (
+            <List.Item>
+              <Card title={item.title}>
+                <Link to={`/course/${item.id}`}>Show more</Link>
+              </Card>
+            </List.Item>
+          )}
+        />
+      </div>
+    </>
+  );
 };
 
 export default CoursesList;
