@@ -1,29 +1,29 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Select } from "antd";
 
 import shortid from "shortid"
+import { filterCourses } from "../../redux";
 
 const { Option } = Select;
 
-// import { Link } from "react-router-dom";
-
 const SearchBar = () => {
-
+	const dispatch = useDispatch()
   	const courses = useSelector((state) => state.courses.data);
 
 	const handleChange = (value) => {
-	  console.log(`selected ${value}`);
+	  dispatch(filterCourses(value))
 	}
 
   return (
     <>
 	   	<div className="container margin-bottom">
-		   <Select mode="tags" style={{ width: '100%' }} placeholder="Select courses" onChange={handleChange}>
-		    {courses.map((x) =>
-		    	<Option key={shortid.generate()}>{x.title}</Option>
-		    	)}
-		  </Select>
+		   	<Select style={{ width: '100%' }} placeholder="Select courses" onChange={(e) => handleChange(e)}>
+			    {
+				    courses.map((x) =>
+				      <Option key={shortid.generate()} value={x.id}>{x.title}</Option>
+			    )}
+		  	</Select>
 		</div>
     </>
   );
