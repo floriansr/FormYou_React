@@ -5,40 +5,39 @@ import { Provider } from "react-redux";
 import store from "redux/store";
 
 import Navbar from "components/Navbar";
-import Authroute from "components/AuthRoute"
+import Authroute from "components/AuthRoute";
 
 import Register from "pages/Register";
 import LogIn from "pages/Login";
 import Home from "pages/Home";
 import About from "pages/About";
 import Profile from "pages/Profile";
+import Course from "pages/Course";
 import NotFound from "pages/NotFound";
 
-
 const App = () => {
+  return (
+    <>
+      <Router>
+        <div>
+          <Provider store={store}>
+            <Navbar />
 
-	return (
-		<>
-				<Router>
-					<div>
-						<Provider store={store}>
+            <Switch>
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login/:statusSlug" component={LogIn} />
+              <Route exact path="/about" component={About} />
 
-							<Navbar />
-
-							<Switch>
-								<Route exact path="/register" component={Register} />
-                				<Route exact path="/login/:statusSlug" component={LogIn} />
-								<Route exact path="/about" component={About} />
-								
-								<Authroute exact path="/profile" component={Profile} />
-								<Home exact path="/" component={Home} />
-								<Route path="*" component={NotFound} status={404} />
-							</Switch>
-			            </Provider>
-					</div>
-				</Router>
-		</>
-	);
+              <Authroute exact path="/profile" component={Profile} />
+              <Authroute exact path="/course/:courseId" component={Course} />
+              <Home exact path="/" component={Home} />
+              <Route path="*" component={NotFound} status={404} />
+            </Switch>
+          </Provider>
+        </div>
+      </Router>
+    </>
+  );
 };
 
 export default App;
