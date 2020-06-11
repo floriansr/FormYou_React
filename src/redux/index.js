@@ -1,4 +1,3 @@
 export { setProfile, removeProfile } from "redux/user/userActions";
 export { setConnexion, removeConnexion } from "redux/log/logActions";
-
-// ,modificateProfile
+export { setCourse } from "redux/courses/courseActions";

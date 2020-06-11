@@ -9,10 +9,9 @@ body {
     margin-bottom: 5%;
 }
 
-#container {
-    display: flex;
+.container {
+    padding: 0 25px 0 25px;
     flex-direction: row;
-    justify-content: "space-around";
     flex-wrap: wrap;
 }
 
@@ -29,4 +28,16 @@ body {
 .cadre:hover {
     border: 5px solid #b59760;
     transition: 0.7s;
+}
+
+.ant-carousel .slick-slide img {
+  width: 100vw;
+  height: 50vh;
+  object-fit: cover;
+  object-position: 50% 55%;
+  overflow: hidden;
+}
+
+.margin-bottom {
+  margin-bottom: 2rem;
 }
