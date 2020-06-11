@@ -7,7 +7,6 @@ import CoursesList from "components/CoursesList"
 import CarouselImages from "tools/Carousel"
 import Cookies from 'js-cookie'
 
-
 import { setCourse } from "../../redux";
 
 
@@ -39,6 +38,7 @@ const Home = () => {
 	}, [dispatch])
 
 	const courses = useSelector(state => state.courses.data);
+	
 
 	return (
 		<>
