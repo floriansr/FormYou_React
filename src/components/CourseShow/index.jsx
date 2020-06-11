@@ -19,7 +19,7 @@ const CourseShow = () => {
     )
       .then((response) => response.json())
       .then((data) => setCourse(data));
-  }, []);
+  }, [courseId]);
 
   return (
     <div className="course-show-container">

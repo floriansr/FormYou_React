@@ -54,7 +54,6 @@ const App = () => {
 		    <>
 		      <Router>
 		        <div>
-		          <Provider store={store}>
 		            <Navbar />
 
 		            <Switch>
@@ -67,10 +66,9 @@ const App = () => {
 		              <Home exact path="/" component={Home} />
 		              <Route path="*" component={NotFound} status={404} />
 		            </Switch>
-		          </Provider>
 		        </div>
 		      </Router>
 		    </>
 		  );
-
+}
 export default App;
